@@ -37,7 +37,7 @@ public class TestSteps {
                 .extract()
                 .response();
         assertThat(bookData.getCollectionOfIsbns()
-                .getFirst().getIsbn(), equalTo(addBookResponse.path("books[0].isbn")));
+                .get(0).getIsbn(), equalTo(addBookResponse.path("books[0].isbn")));
     }
 
     @Step("Delete book from the list")
