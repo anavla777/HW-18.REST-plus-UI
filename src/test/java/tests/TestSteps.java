@@ -9,7 +9,8 @@ import pages.ProfilePage;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static specs.DemoqaSpec.demoqaCreatedResponseSpec;
 import static specs.DemoqaSpec.demoqaRequestSpec;
 
@@ -33,8 +34,10 @@ public class TestSteps {
                 .post("/BookStore/v1/Books")
                 .then()
                 .spec(demoqaCreatedResponseSpec)
-                .extract().response();
-        assertEquals(bookData.getCollectionOfIsbns().getFirst().getIsbn(), addBookResponse.path("books[0].isbn"));
+                .extract()
+                .response();
+        assertThat(bookData.getCollectionOfIsbns()
+                .getFirst().getIsbn(), equalTo(addBookResponse.path("books[0].isbn")));
     }
 
     @Step("Delete book from the list")
