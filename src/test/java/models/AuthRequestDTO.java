@@ -1,4 +1,4 @@
-package api.authorization;
+package models;
 
 import lombok.Data;
 

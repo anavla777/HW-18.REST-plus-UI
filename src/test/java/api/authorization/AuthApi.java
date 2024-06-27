@@ -3,6 +3,8 @@ package api.authorization;
 import com.codeborne.selenide.WebDriverRunner;
 import config.App;
 import io.qameta.allure.Step;
+import models.AuthRequestDTO;
+import models.AuthResponseDTO;
 import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.Selenide.open;
