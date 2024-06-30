@@ -40,4 +40,12 @@ public interface WebDriverConfig extends Config {
     @Key("remoteUrl")
     @DefaultValue("http://localhost:4444")
     String remoteUrl();
+
+    @Key("selenoidUser")
+    @DefaultValue("null")
+    String selenoidUser();
+
+    @Key("selenoidPass")
+    @DefaultValue("null")
+    String selenoidPass();
 }
