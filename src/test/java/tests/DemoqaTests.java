@@ -4,17 +4,22 @@ import helpers.WithLogin;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pages.ProfilePage;
 
 @DisplayName("Demoqa tests")
 public class DemoqaTests extends TestBase {
-    final TestSteps step = new TestSteps();
+    final ApiSteps apiSteps = new ApiSteps();
+    final ProfilePage profilePage = new ProfilePage();
 
     @Test
     @DisplayName("Delete book from book list")
     @Owner("Ananenkov Vladislav")
     @WithLogin
     void deleteBookTest() {
-        step.addListOfBook();
-        step.deleteBookFromListBooks();
+        apiSteps.addListOfBook();
+        profilePage.openPage()
+                .deleteBook()
+                .confirmDeletion()
+                .verifyDeletion();
     }
 }
