@@ -24,7 +24,7 @@ public class ProfilePage {
 
     @Step("Delete book from the list")
     public ProfilePage deleteBook() {
-        deleteButton.click();
+        deleteButton.scrollIntoView(true).click();
         return this;
     }
 
