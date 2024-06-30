@@ -1,8 +1,10 @@
 package helpers;
 
 import com.codeborne.selenide.Selenide;
+import config.WebDriverConfig;
 import io.qameta.allure.Attachment;
 import lombok.Getter;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.slf4j.Logger;
@@ -20,8 +22,7 @@ public class Attach {
 
     private static final Logger logger = LoggerFactory.getLogger(Attach.class);
 
-    @Getter
-    private static final String selenoidHost = System.getProperty("wdhost", "null");
+    static final WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
 
     @Attachment(value = "{attachName}", type = "image/png")
     public static byte[] screenshotAs(String attachName) {
@@ -55,8 +56,8 @@ public class Attach {
     }
 
     public static URI getVideoUrl() {
-        if (getSelenoidHost() != null) {
-            String videoUrl = "https://" + getSelenoidHost() + "/video/" + sessionId() + ".mp4";
+        if (config.isRemote()) {
+            String videoUrl = "https://" + config.remoteUrl() + "/video/" + sessionId() + ".mp4";
             try {
                 return new URI(videoUrl);
             } catch (URISyntaxException e) {

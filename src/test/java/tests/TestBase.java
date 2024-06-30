@@ -28,7 +28,7 @@ public class TestBase {
         Configuration.browserSize = config.browserSize();
         Configuration.browserVersion = config.browserVersion();
         if (config.isRemote()) {
-            Configuration.remote = config.remoteUrl();
+            Configuration.remote = "https://user1:1234@"+config.remoteUrl()+"/wd/hub";
         }
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
